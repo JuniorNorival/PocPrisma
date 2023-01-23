@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import tasksRouter from "./routers/task-router.js";
+import responsibleRouter from "./routers/responsible-router.js";
 const server = express();
 server.use(express.json());
 server.use(cors());
-
+server.use(responsibleRouter);
 server.use(tasksRouter);
 server.listen(5000, () => console.log("to rodando"));

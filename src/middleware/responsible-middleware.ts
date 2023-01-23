@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { responsibleSchema } from "../schemas/responsible-schema.js";
+import { responsibleSchema } from "../schemas/responsible-schemas.js";
 
 const validateName = (req: Request, res: Response, next: NextFunction) => {
   const { error } = responsibleSchema.validate(req.body, {

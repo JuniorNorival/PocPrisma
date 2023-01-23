@@ -4,7 +4,7 @@ import {
   deleteTask,
   listTasks,
   updateTask,
-} from "../respositories/tasks-repositorie.js";
+} from "../repositories/tasks-repositorie.js";
 import { Task } from "../protocols/tasks.js";
 
 async function create(req: Request, res: Response) {

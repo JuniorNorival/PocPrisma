@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { search } from "../respositories/tasks-repositorie.js";
+import { search } from "../repositories/tasks-repositorie.js";
 import { taskSchema } from "../schemas/tasks-schemas.js";
 
 const validateTask = (req: Request, res: Response, next: NextFunction) => {

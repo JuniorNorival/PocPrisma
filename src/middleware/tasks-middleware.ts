@@ -16,12 +16,12 @@ const validateTask = (req: Request, res: Response, next: NextFunction) => {
 
 const searchTask = async (req: Request, res: Response, next: NextFunction) => {
   const valid = await search(Number(req.params.id));
-  console.log(valid.rows);
-  if (valid.rowCount === 0) {
+
+  if (!valid) {
     res.status(404).send({ message: "Tarefa não existe" });
     return;
   }
-  res.locals.realized = valid.rows[0].realized;
+  res.locals.realized = valid.realized;
   next();
 };
 

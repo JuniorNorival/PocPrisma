@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model responsible {
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(100)
+  tasks tasks[]
+}
+
+model taskCategories {
+  id        Int     @id @default(autoincrement())
+  category String  @unique
+  tasks     tasks[]
+}
+
+model tasks {
+  id             Int            @id @default(autoincrement())
+  responsibleId  Int
+  title          String         @db.VarChar(50)
+  description    String         @db.VarChar(300)
+  realized       Boolean?       @default(false)
+  date           DateTime       @db.Date
+  categoryId     Int
+  taskCategories taskCategories @relation(fields: [categoryId], references: [id])
+  responsible    responsible    @relation(fields: [responsibleId], references: [id])
+}

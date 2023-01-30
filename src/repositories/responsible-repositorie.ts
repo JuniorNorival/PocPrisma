@@ -1,10 +1,6 @@
-import connection from "../database/db.js";
-import { Responsible } from "../protocols/responsible.js";
+import prisma from "../database/db.js";
 
-const createResponsible = async (name: Responsible) => {
-  return (
-    await connection.query(`INSERT INTO responsible (name) VALUES($1))`, [name])
-  ).rowCount;
+const createResponsible = async (name: string) => {
+  return await prisma.responsible.create({ data: { name: name } });
 };
-
 export { createResponsible };

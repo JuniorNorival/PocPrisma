@@ -1,9 +1,8 @@
 import { createResponsible } from "../repositories/responsible-repositorie.js";
 import { Request, Response } from "express";
-import { Responsible } from "../protocols/responsible.js";
 
 const addResponsible = async (req: Request, res: Response) => {
-  const name = req.body as Responsible;
+  const name = req.body as string;
 
   try {
     const response = await createResponsible(name);

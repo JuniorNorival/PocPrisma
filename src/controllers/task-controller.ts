@@ -5,10 +5,9 @@ import {
   listTasks,
   updateTask,
 } from "../repositories/tasks-repositorie.js";
-import { Task } from "../protocols/tasks.js";
-
+import { Prisma } from "@prisma/client";
 async function create(req: Request, res: Response) {
-  const task = req.body as Task;
+  const task = req.body as Prisma.tasksCreateInput;
   try {
     await createTask(task);
     res.sendStatus(201);
@@ -31,7 +30,7 @@ async function taskDelete(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   const taskId = Number(req.params.id);
   const { realized } = res.locals;
-  console.log(realized);
+
   try {
     await updateTask(taskId, realized);
     res.sendStatus(200);
@@ -43,8 +42,7 @@ async function update(req: Request, res: Response) {
 async function list(req: Request, res: Response) {
   try {
     const tasks = await listTasks();
-    console.log(tasks);
-    return res.status(200).send(tasks.rows);
+    return res.status(200).send(tasks);
   } catch (error) {
     console.error(error.message);
     return res.sendStatus(500);

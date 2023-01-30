@@ -24,4 +24,11 @@ async function createTaskCategory(categoryName: string) {
     data: { category: categoryName },
   });
 }
-export { createTask, deleteTask, search, updateTask, listTasks };
+export {
+  createTask,
+  deleteTask,
+  search,
+  updateTask,
+  listTasks,
+  createTaskCategory,
+};

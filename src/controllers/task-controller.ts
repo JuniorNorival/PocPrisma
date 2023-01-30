@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createTask,
+  createTaskCategory,
   deleteTask,
   listTasks,
   updateTask,
@@ -48,4 +49,14 @@ async function list(req: Request, res: Response) {
     return res.sendStatus(500);
   }
 }
-export { create, taskDelete, update, list };
+async function taskCategory(req: Request, res: Response) {
+  const categoryName = req.body as string;
+  try {
+    await createTaskCategory(categoryName);
+    res.sendStatus(201);
+  } catch (error) {
+    console.error(error.message);
+    return res.sendStatus(500);
+  }
+}
+export { create, taskDelete, update, list, taskCategory };
